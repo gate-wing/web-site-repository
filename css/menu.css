@@ -1,0 +1,68 @@
+/* =============================================
+   ③ メニュー
+============================================= */
+.menu { background: var(--bg-dark); }
+.menu-intro {
+    text-align: center;
+    font-size: .92rem;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin: -44px auto 70px;
+    line-height: 2.1;
+}
+.menu-cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+}
+.menu-card {
+    background: var(--bg);
+    transition: box-shadow var(--ease);
+}
+.menu-card:hover { box-shadow: 0 12px 40px rgba(44,36,32,.1); }
+.menu-card-img {
+    overflow: hidden;
+    aspect-ratio: 4/3;
+}
+.menu-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .7s ease;
+}
+.menu-card:hover .menu-card-img img { transform: scale(1.06); }
+.menu-card-body { padding: 32px 28px 36px; }
+.menu-card-no {
+    font-family: var(--font-en);
+    font-size: .68rem;
+    letter-spacing: .35em;
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+.menu-card-ttl {
+    font-family: var(--font-en);
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    margin-bottom: 16px;
+}
+.menu-card-txt {
+    font-size: .83rem;
+    color: var(--text-muted);
+    line-height: 1.95;
+    margin-bottom: 24px;
+}
+.menu-link {
+    font-size: .72rem;
+    letter-spacing: .22em;
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent-light);
+    padding-bottom: 2px;
+    transition: border-color var(--ease), color var(--ease);
+}
+.menu-link:hover { border-color: var(--accent); color: var(--text); }
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+    .menu-cols { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+}
