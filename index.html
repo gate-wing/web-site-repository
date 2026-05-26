@@ -182,14 +182,29 @@
             <div class="g-item fade d1">
                 <img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?auto=format&fit=crop&w=800&h=740&q=80" alt="空間2">
             </div>
-            <div class="g-item fade">
-                <img src="https://images.unsplash.com/photo-1533777324565-a040eb52facd?auto=format&fit=crop&w=800&h=500&q=80" alt="空間3">
-            </div>
-            <div class="g-item fade d1">
-                <img src="https://images.unsplash.com/photo-1525610553991-2bede1a236e2?auto=format&fit=crop&w=800&h=500&q=80" alt="空間4">
-            </div>
-            <div class="g-item fade d2">
-                <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=800&h=500&q=80" alt="空間5">
+        </div>
+
+        <div class="space-slider-wrap fade">
+            <div class="space-slider-track">
+                <div class="s-item">
+                    <img src="https://images.unsplash.com/photo-1533777324565-a040eb52facd?auto=format&fit=crop&w=800&h=500&q=80" alt="空間3">
+                </div>
+                <div class="s-item">
+                    <img src="https://images.unsplash.com/photo-1525610553991-2bede1a236e2?auto=format&fit=crop&w=800&h=500&q=80" alt="空間4">
+                </div>
+                <div class="s-item">
+                    <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=800&h=500&q=80" alt="空間5">
+                </div>
+                <!-- ループ用クローン -->
+                <div class="s-item" aria-hidden="true">
+                    <img src="https://images.unsplash.com/photo-1533777324565-a040eb52facd?auto=format&fit=crop&w=800&h=500&q=80" alt="">
+                </div>
+                <div class="s-item" aria-hidden="true">
+                    <img src="https://images.unsplash.com/photo-1525610553991-2bede1a236e2?auto=format&fit=crop&w=800&h=500&q=80" alt="">
+                </div>
+                <div class="s-item" aria-hidden="true">
+                    <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=800&h=500&q=80" alt="">
+                </div>
             </div>
         </div>
 
@@ -437,6 +452,35 @@
     }, { threshold: 0.14, rootMargin: '0px 0px -36px 0px' });
 
     fades.forEach(el => io.observe(el));
+
+    /* =============================================
+       スペース スライダー（左流れ・無限ループ）
+    ============================================= */
+    const sliderWrap  = document.querySelector('.space-slider-wrap');
+    const sliderTrack = document.querySelector('.space-slider-track');
+    const GAP = 14;
+    let sliderPos = 0;
+    let itemW = 0;
+
+    function calcItemWidth() {
+        const w = sliderWrap.offsetWidth;
+        itemW = (w - GAP * 2) / 3;
+        sliderTrack.querySelectorAll('.s-item').forEach(el => {
+            el.style.width = itemW + 'px';
+        });
+    }
+
+    function tickSlider() {
+        sliderPos += 0.5;
+        const loopPoint = (itemW + GAP) * 3;
+        if (sliderPos >= loopPoint) sliderPos -= loopPoint;
+        sliderTrack.style.transform = `translateX(-${sliderPos}px)`;
+        requestAnimationFrame(tickSlider);
+    }
+
+    calcItemWidth();
+    window.addEventListener('resize', () => { calcItemWidth(); sliderPos = 0; });
+    tickSlider();
 </script>
 
 </body>
