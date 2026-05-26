@@ -29,7 +29,7 @@
     font-size: .62rem;
     letter-spacing: .2em;
     color: var(--white);
-    background: var(--accent);
+    background: #A12824;
     padding: 3px 10px;
 }
 .news-ttl {
@@ -39,6 +39,9 @@
     letter-spacing: .05em;
     line-height: 1.65;
     margin-bottom: 8px;
+    color: #A12824;
+    text-decoration: underline;
+    text-underline-offset: 4px;
 }
 .news-exc { font-size: .8rem; color: var(--text-muted); line-height: 1.9; }
 .news-more { text-align: center; margin-top: 56px; }
